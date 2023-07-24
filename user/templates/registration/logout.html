@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="3; url={% url 'user_home' %}">
+    <title>{{ title }}</title>
+    <style>
+        .flex{
+            display: flex;
+        }
+        div{
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>You have been logged out, Goodbye 👋</h1>
+    <div class="flex">
+    <div><a href="{% url 'MyLoginView' %}">login</a></div>
+    <div><a href="{% url 'signup' %}">signup</a></div>
+    <div><a href="{% url 'user_home' %}">Home</a></div>
+</div>
+</body>
+
+</html>
