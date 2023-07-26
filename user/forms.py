@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
-from .models import User
+from user.models import User
 
 #create a class for the form
 class UserForm(UserCreationForm):
@@ -16,11 +16,11 @@ class UserForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
         def clean_password2(self):
-            password1 = self.cleaned_data.get('password1')
-            password2 = self.cleaned_data.get('password2')
+            password1 = self.cleaned_data.get('password1') # type: ignore
+            password2 = self.cleaned_data.get('password2') # type: ignore
             if password1 and password2 and password1 != password2:
                 raise ValidationError(
-                self.error_messages["password_mismatch"],
+                self.error_messages["password_mismatch"], # type: ignore
                 code="password_mismatch",
             )
                 # raise forms.ValidationError("Passwords don't match")

@@ -4,20 +4,23 @@ from .models import Location, Family, Product, Transaction
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location 
-        fields = ['reference','title', 'description']
+        fields = '__all__'
 
 class FamilySerializer(serializers.ModelSerializer):
     class Meta:
         model = Family 
-        fields = ['reference','title', 'description','unit','minQuantity']
+        fields = '__all__'
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
+    location = serializers.PrimaryKeyRelatedField(queryset=Location.objects.all())
+    family = serializers.PrimaryKeyRelatedField(queryset=Family.objects.all())
     class Meta:
         model = Product 
         fields = ['sku','barcode', 'title', 'description','unitCost','unit','quantity','minQuantity','location','family']
 
-class TransactionSerializer(serializers.ModelSerializer):
-    product = ProductSerializer()
+class TransactionSerializer(serializers.HyperlinkedModelSerializer):
+    product = ProductSerializer(read_only=True)
     class Meta:
         model = Transaction 
         fields = ['sku','barcode','comment','unitCost','quantity','product','date','reason']
+

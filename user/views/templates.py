@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import views as auth_views
 # from django.contrib.auth.decorators import login_required
-from .forms import UserForm, LoginForm
+from user.forms import UserForm, LoginForm
 
 # Create your views here.
 def user_home(request):
