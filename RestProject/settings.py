@@ -62,7 +62,7 @@ ROOT_URLCONF = 'RestProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,11 +133,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # added
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'base_static'),
-    os.path.join(BASE_DIR, 'user', 'user_static'),
-    os.path.join(BASE_DIR, 'inventory', 'inventory_static'),
+    BASE_DIR / 'base_static',
+    # os.path.join(BASE_DIR, 'user', 'user_static'),
+    # os.path.join(BASE_DIR, 'inventory', 'inventory_static'),
 ]
 
 AUTH_USER_MODEL = 'user.User'
