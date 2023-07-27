@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-5gky#43sk$4u+@e8%@wv7aep=*k(*d%ok3)=mu4mi_szz$bd_5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['royaldweeb.pythonanywhere.com']
+ALLOWED_HOSTS = ['royaldweeb.pythonanywhere.com','127.0.0.1']
 
 
 # Application definition
@@ -152,12 +152,6 @@ LOGOUT_REDIRECT_URL = "logoutView"
 #         'PAGE_SIZE': 10
 # }
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAdminUser'],
-    'PAGE_SIZE': 10,
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-}
-
 # settings.py
 
 REST_FRAMEWORK = {
@@ -168,5 +162,8 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAdminUser',
     ],
+    'PAGE_SIZE': 10,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
 }

@@ -1,0 +1,106 @@
+/* ------------------------ form ---------------------------- */
+.card {
+    flex-basis: 150px;
+    max-width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 10px;
+    margin-inline: auto;
+}
+
+.card-header {
+    background-color: #333;
+    padding: 16px;
+    text-align: center;
+}
+
+.card-header .text-header {
+    margin: 0;
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+}
+
+.card-body {
+    padding: 16px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 1px;
+    position: relative;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 90%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px;
+}
+
+.helptext {
+    display: none;
+    position: absolute;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    z-index: 1;
+    opacity: .9;
+}
+
+input:hover+.helptext {
+    display: block;
+}
+
+.errorlist {
+    color: red;
+}
+
+
+/* ------------------------ button ---------------------------- */
+button {
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 17px;
+    padding: 0.8em 1.3em 0.8em 0.9em;
+    color: white;
+    background: #ad5389;
+    background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+    border: none;
+    letter-spacing: 0.05em;
+    border-radius: 16px;
+}
+
+button svg {
+    margin-right: 3px;
+    transform: rotate(30deg);
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+button span {
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+button:hover svg {
+    transform: translateX(5px) rotate(90deg);
+}
+
+button:hover span {
+    transform: translateX(7px);
+}

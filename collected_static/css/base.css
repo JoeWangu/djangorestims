@@ -1,0 +1,430 @@
+/* ------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------- BUTTON BATMAN ICON ---------------------------------------------------- */
+button.btn_batman {
+    border: none;
+    position: relative;
+    width: 200px;
+    height: 73px;
+    padding: 0;
+    z-index: 2;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    transform: translateY(8px)
+}
+
+button.btn_batman:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 0px 0 0 0 white;
+    transition: all 2s ease;
+}
+
+button.btn_batman:hover:after {
+    box-shadow: 0px -13px 56px 12px #ffffffa6;
+}
+
+button.btn_batman span {
+    position: absolute;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 100;
+    left: 50%;
+    top: 39%;
+    letter-spacing: 3px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    color: black;
+    transition: all 2s ease;
+}
+
+button.btn_batman:hover span {
+    color: white;
+}
+
+button.btn_batman:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background-color: black;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 1s ease;
+}
+
+button.btn_batman:hover:before {
+    width: 100%;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------- YOU LOADER ---------------------------------------------------- */
+.absolute {
+    position: absolute;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.loader {
+    display: flex;
+    margin: 0.25em 0;
+}
+
+.w-2 {
+    width: 0.5em;
+}
+
+.dash {
+    animation: dashArray 2s ease-in-out infinite,
+        dashOffset 2s linear infinite;
+}
+
+.spin {
+    animation: spinDashArray 2s ease-in-out infinite,
+        spin 8s ease-in-out infinite,
+        dashOffset 2s linear infinite;
+    transform-origin: center;
+}
+
+/* @keyframes dashArray {
+    0% {
+        stroke-dasharray: 0 1 359 0;
+    }
+
+    50% {
+        stroke-dasharray: 0 359 1 0;
+    }
+
+    100% {
+        stroke-dasharray: 359 1 0 0;
+    }
+}
+
+@keyframes spinDashArray {
+    0% {
+        stroke-dasharray: 270 90;
+    }
+
+    50% {
+        stroke-dasharray: 0 360;
+    }
+
+    100% {
+        stroke-dasharray: 270 90;
+    }
+}
+
+@keyframes dashOffset {
+    0% {
+        stroke-dashoffset: 365;
+    }
+
+    100% {
+        stroke-dashoffset: 5;
+    }
+}
+
+@keyframes spin {
+    0% {
+        rotate: 0deg;
+    }
+
+    12.5%,
+    25% {
+        rotate: 270deg;
+    }
+
+    37.5%,
+    50% {
+        rotate: 540deg;
+    }
+
+    62.5%,
+    75% {
+        rotate: 810deg;
+    }
+
+    87.5%,
+    100% {
+        rotate: 1080deg;
+    }
+} */
+
+/* ------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------- PENCIL LOADER ---------------------------------------------------- */
+.pencil {
+    display: block;
+    width: 10em;
+    height: 10em;
+}
+
+.pencil__body1,
+.pencil__body2,
+.pencil__body3,
+.pencil__eraser,
+.pencil__eraser-skew,
+.pencil__point,
+.pencil__rotate,
+.pencil__stroke {
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.pencil__body1,
+.pencil__body2,
+.pencil__body3 {
+    transform: rotate(-90deg);
+}
+
+.pencil__body1 {
+    animation-name: pencilBody1;
+}
+
+.pencil__body2 {
+    animation-name: pencilBody2;
+}
+
+.pencil__body3 {
+    animation-name: pencilBody3;
+}
+
+.pencil__eraser {
+    animation-name: pencilEraser;
+    transform: rotate(-90deg) translate(49px, 0);
+}
+
+.pencil__eraser-skew {
+    animation-name: pencilEraserSkew;
+    animation-timing-function: ease-in-out;
+}
+
+.pencil__point {
+    animation-name: pencilPoint;
+    transform: rotate(-90deg) translate(49px, -30px);
+}
+
+.pencil__rotate {
+    animation-name: pencilRotate;
+}
+
+.pencil__stroke {
+    animation-name: pencilStroke;
+    transform: translate(100px, 100px) rotate(-113deg);
+}
+
+/* Animations */
+/* @keyframes pencilBody1 {
+
+    from,
+    to {
+        stroke-dashoffset: 351.86;
+        transform: rotate(-90deg);
+    }
+
+    50% {
+        stroke-dashoffset: 150.8;
+        /* 3/8 of diameter 
+        transform: rotate(-225deg);
+    }
+} */
+
+/* @keyframes pencilBody2 {
+
+    from,
+    to {
+        stroke-dashoffset: 406.84;
+        transform: rotate(-90deg);
+    }
+
+    50% {
+        stroke-dashoffset: 174.36;
+        transform: rotate(-225deg);
+    }
+}
+
+@keyframes pencilBody3 {
+
+    from,
+    to {
+        stroke-dashoffset: 296.88;
+        transform: rotate(-90deg);
+    }
+
+    50% {
+        stroke-dashoffset: 127.23;
+        transform: rotate(-225deg);
+    }
+}
+
+@keyframes pencilEraser {
+
+    from,
+    to {
+        transform: rotate(-45deg) translate(49px, 0);
+    }
+
+    50% {
+        transform: rotate(0deg) translate(49px, 0);
+    }
+}
+
+@keyframes pencilEraserSkew {
+
+    from,
+    32.5%,
+    67.5%,
+    to {
+        transform: skewX(0);
+    }
+
+    35%,
+    65% {
+        transform: skewX(-4deg);
+    }
+
+    37.5%,
+    62.5% {
+        transform: skewX(8deg);
+    }
+
+    40%,
+    45%,
+    50%,
+    55%,
+    60% {
+        transform: skewX(-15deg);
+    }
+
+    42.5%,
+    47.5%,
+    52.5%,
+    57.5% {
+        transform: skewX(15deg);
+    }
+}
+
+@keyframes pencilPoint {
+
+    from,
+    to {
+        transform: rotate(-90deg) translate(49px, -30px);
+    }
+
+    50% {
+        transform: rotate(-225deg) translate(49px, -30px);
+    }
+}
+
+@keyframes pencilRotate {
+    from {
+        transform: translate(100px, 100px) rotate(0);
+    }
+
+    to {
+        transform: translate(100px, 100px) rotate(720deg);
+    }
+}
+
+@keyframes pencilStroke {
+    from {
+        stroke-dashoffset: 439.82;
+        transform: translate(100px, 100px) rotate(-113deg);
+    }
+
+    50% {
+        stroke-dashoffset: 164.93;
+        transform: translate(100px, 100px) rotate(-113deg);
+    }
+
+    75%,
+    to {
+        stroke-dashoffset: 439.82;
+        transform: translate(100px, 100px) rotate(112deg);
+    }
+} */
+
+/* ------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------- LOGOUT AND LOGIN BTN ---------------------------------------------------- */
+button.btn_logout {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: rgb(255, 65, 65);
+}
+
+/* plus sign */
+div.logout_sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.logout_sign svg {
+    width: 17px;
+}
+
+div.logout_sign svg path {
+    fill: white;
+}
+
+/* text */
+div.logout_text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: .3s;
+}
+
+/* hover effect on button width */
+button.btn_logout:hover {
+    width: 125px;
+    border-radius: 40px;
+    transition-duration: .3s;
+}
+
+button.btn_logout:hover div.logout_sign {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 20px;
+}
+
+/* hover effect button's text */
+button.btn_logout:hover div.logout_text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    /* padding-right: 10px; */
+}
+
+/* button click effect*/
+button.btn_logout:active {
+    transform: translate(2px, 2px);
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------- SOMETHING ELSE ---------------------------------------------------- */
