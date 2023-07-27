@@ -133,11 +133,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # added
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-STATIC_ROOT = BASE_DIR / 'collected_static'
+STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'user', 'static'),
-    os.path.join(BASE_DIR, 'inventory', 'static'),
+    os.path.join(BASE_DIR, 'base_static'),
+    os.path.join(BASE_DIR, 'user', 'user_static'),
+    os.path.join(BASE_DIR, 'inventory', 'inventory_static'),
 ]
 
 AUTH_USER_MODEL = 'user.User'
