@@ -58,7 +58,6 @@ class Location(models.Model):
 
 
 class Transaction(models.Model):
-
     sku = models.CharField(max_length=13,help_text="Enter Product Stock Keeping Unit")
     barcode = models.CharField(max_length=13,help_text="Enter Product Barcode (ISBN, UPC ...)")
     comment = models.TextField(help_text="Enter Product Stock Keeping Unit")

@@ -19,7 +19,8 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['sku','barcode', 'title', 'description','unitCost','unit','quantity','minQuantity','location','family']
 
 class TransactionSerializer(serializers.HyperlinkedModelSerializer):
-    product = ProductSerializer(read_only=True)
+    # product = ProductSerializer(read_only=True)
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
     class Meta:
         model = Transaction 
         fields = ['sku','barcode','comment','unitCost','quantity','product','date','reason']
