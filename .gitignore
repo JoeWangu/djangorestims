@@ -1,3 +1,13 @@
 .venv/
 .vscode/
 db.sqlite3
+media/
+inventory/__pycache__/
+inventory/migrations/
+inventory/views/__pycache__/
+RestProject/__pycache__/
+user/__pycache__/
+user/migrations/
+user/views/__pycache__/
+userprofile/migrations/
+userprofile/__pycache__/
