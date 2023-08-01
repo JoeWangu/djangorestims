@@ -7,8 +7,8 @@ from inventory.serializers import ProductSerializer, LocationSerializer, FamilyS
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    authentication_classes = [SessionAuthentication, TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [SessionAuthentication, TokenAuthentication]
+    # permission_classes = [IsAuthenticated]
 
 class LocationViewSet(viewsets.ModelViewSet):
     queryset = Location.objects.all()
