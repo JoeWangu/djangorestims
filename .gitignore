@@ -1,5 +1,6 @@
 .venv/
 .vscode/
+static/
 db.sqlite3
 media/
 inventory/__pycache__/
@@ -11,3 +12,4 @@ user/migrations/
 user/views/__pycache__/
 userprofile/migrations/
 userprofile/__pycache__/
+discarded_code/

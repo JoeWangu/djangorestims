@@ -9,10 +9,18 @@ from django.contrib.auth import login
 # from rest_framework.authentication import TokenAuthentication
 # from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import logout
+from rest_framework import generics
 
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        user = User.objects.get(username=request.data['username'])
+        login(request, user)
+        return response
+
 
 class LoginView(views.APIView):
     # This view should be accessible also for unauthenticated users.

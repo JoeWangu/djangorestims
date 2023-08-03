@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5gky#43sk$4u+@e8%@wv7aep=*k(*d%ok3)=mu4mi_szz$bd_5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['royaldweeb.pythonanywhere.com','127.0.0.1']
 
@@ -133,7 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # added
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
     BASE_DIR / 'base_static',
     # os.path.join(BASE_DIR, 'user', 'user_static'),
@@ -145,12 +145,6 @@ AUTH_USER_MODEL = 'user.User'
 # users will be redirected to the home page after login
 LOGIN_REDIRECT_URL = "user_home"
 LOGOUT_REDIRECT_URL = "logoutView"
-
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES':
-#         ['rest_framework.permissions.IsAdminUser'],
-#         'PAGE_SIZE': 10
-# }
 
 # settings.py
 

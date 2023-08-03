@@ -1,85 +1,151 @@
 from __future__ import unicode_literals
+from typing import Iterable, Optional
 # -*- coding: utf-8 -*-
 from django.db import models
-# from rest_framework.reverse import reverse
-from django.urls import reverse
+from django.conf import settings
+# from django.contrib.auth.models import User
+import os
+from PIL import Image
 
-# Create your models here.
+DC = 'DC'
+NY = 'NewYork'
+TX = 'Texas'
+
+LOCATION_CHOICES = [
+    (DC, 'Washington, D.C.'),
+    (NY, 'New York City'),
+    (TX, 'Austin'),
+]
+
+TRANSACTION_TYPES = [
+        ('IN', 'Incoming'),
+        ('OUT', 'Outgoing'),
+        ('TRANSFER', 'Transfer'),
+]
+
+STATUS_CHOICE = (
+        ('pending', 'Pending'),
+        ('decline', 'Decline'),
+        ('approved', 'Approved'),
+        ('processing', 'Processing'),
+        ('complete', 'Complete'),
+        ('bulk', 'Bulk'),
+)
+
+# images = os.path.join(settings.MEDIA_ROOT, 'images')
+# IMAGE_CHOICES = [(filename, filename) for filename in os.listdir(images)]
+def get_default_image():
+    # Get or create the default image object
+    default_image = ImagesUpload.objects.get_or_create(image='images/default.jpg')
+    return default_image[0]
+# default_image = images + '/default.jpg'
+
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank= True, default='not provided')
+
+    def __str__(self):
+        return self.name
+
+class Supplier(models.Model):
+    name = models.CharField(max_length=255)
+    contact_details = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+class ImagesUpload(models.Model):
+    image = models.ImageField(upload_to='images/',max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return self.image.name
+    # resizing the image, you can change parameters like size and quality.
+    def save(self, *args, **kwargs):
+        super(ImagesUpload, self).save(*args, **kwargs)
+        img = Image.open(self.image.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path, quality=100, optimize=True)
+        return super().save()
+
 class Product(models.Model):
-    sku = models.CharField(max_length=13,help_text="Enter Product Stock Keeping Unit")
-    barcode = models.CharField(max_length=13,help_text="Enter Product Barcode (ISBN, UPC ...)")
-    title = models.CharField(max_length=200, help_text="Enter Product Title")
-    description = models.TextField(help_text="Enter Product Description")
-    unitCost = models.FloatField(help_text="Enter Product Unit Cost")
-    unit = models.CharField(max_length=10,help_text="Enter Product Unit ")
-    quantity = models.FloatField(help_text="Enter Product Quantity")
-    minQuantity = models.FloatField(help_text="Enter Product Min Quantity")
-    family = models.ForeignKey('Family', on_delete=models.CASCADE)
-    location = models.ForeignKey('Location', on_delete=models.CASCADE)
-
-    def get_absolute_url(self):
-        """
-        Returns the url to access a particular instance of Product.
-        """
-        return reverse('ProductViewSet', args=[str(self.id)])# type: ignore
+    name = models.CharField(max_length=255)
+    model_number = models.CharField(max_length=255)
+    specifications = models.TextField()
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    # image = models.ImageField(max_length=100, choices=IMAGE_CHOICES, null=True, blank=True, default='default.jpg')
+    image = models.ForeignKey(ImagesUpload, on_delete=models.SET_DEFAULT, default=get_default_image, max_length=100, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return self.name
 
-class Family(models.Model):
-    reference = models.CharField(max_length=13, help_text="Enter Family Reference")
-    title = models.CharField(max_length=200, help_text="Enter Family Title")
-    description = models.TextField(help_text="Enter Family Description")
-    unit = models.CharField(max_length=10,help_text="Enter Family Unit ")
-    minQuantity = models.FloatField(help_text="Enter Family Min Quantity")
+class Inventory(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    last_sales_date = models.DateField(auto_now=True)
+    quantity_sold = models.IntegerField(null=False,blank=False)
+    sales = models.DecimalField(max_digits=19,decimal_places=2,null=False,blank=False)
+    stock_date = models.DateField(auto_now_add=True)
+    quantity_in_stock = models.IntegerField()
+    minimum_quantity = models.IntegerField()
 
-    def get_absolute_url(self):
-        """
-        Returns the url to access a particular instance of Family.
-        """
-        return reverse('family-detail-view', args=[str(self.id)])# type: ignore
+class Customer(models.Model):
+    name = models.CharField(max_length=255)
+    contact_details = models.CharField(max_length=255)
+    address = models.CharField(max_length=200)
+    extra_info = models.TextField(null=True, blank=True, default='none')
 
     def __str__(self):
-        return self.title
+        return self.name
 
-class Location(models.Model):
-    reference = models.CharField(max_length=20, help_text="Enter Location Reference")
-    title = models.CharField(max_length=200, help_text="Enter Location Title")
-    description = models.TextField(help_text="Enter Location Description")
+class Order(models.Model):
+    order_date = models.DateTimeField(auto_now_add=True)
+    delivery_date = models.DateTimeField()
+    status = models.CharField(max_length=10, choices=STATUS_CHOICE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
 
-    def get_absolute_url(self):
-        """
-        Returns the url to access a particular instance of Location.
-        """
-        return reverse('family-detail-view', args=[str(self.id)])# type: ignore
-    
     def __str__(self):
-        return self.title
+        return f"Order #{self.id}" # type: ignore
 
-
+# track the movement of inventory, such as when items are received from suppliers, sold to customers, or transferred between locations. 
 class Transaction(models.Model):
-    sku = models.CharField(max_length=13,help_text="Enter Product Stock Keeping Unit")
-    barcode = models.CharField(max_length=13,help_text="Enter Product Barcode (ISBN, UPC ...)")
-    comment = models.TextField(help_text="Enter Product Stock Keeping Unit")
-    unitCost = models.FloatField(help_text="Enter Product Unit Cost")
-    quantity = models.FloatField(help_text="Enter Product Quantity")
-    product = models.ForeignKey('Product', on_delete=models.CASCADE)
-    date = models.DateField(null=True, blank=True)
-    REASONS = (
-        ('ns', 'New Stock'),
-        ('ur', 'Usable Return'),
-        ('nr', 'Unusable Return'),
-    )
-    reason = models.CharField(max_length=2, choices=REASONS, blank=True, default='ns', help_text='Reason for transaction')
-
-    def get_absolute_url(self):
-        """
-        Returns the url to access a particular instance of Product.
-        """
-        return reverse('transaction-detail-view', args=[str(self.id)])# type: ignore
+    transaction_type = models.CharField(max_length=50, choices=TRANSACTION_TYPES)
+    transaction_date = models.DateField(auto_now_add=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
 
     def __str__(self):
         return 'Transaction :  %d' % (self.id)# type: ignore
-    
 
-    # type: ignore
+class Location(models.Model):
+    name = models.CharField(max_length=255)
+    address = models.CharField(choices=LOCATION_CHOICES, default=DC,max_length=255)
+    capacity = models.IntegerField(null=True, blank=True)
+    contact_information = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+class OnlineBuyer(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    name = models.CharField(max_length=120, unique=True)
+    address = models.CharField(max_length=220)
+    created_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+class Shipments(models.Model):
+    shipment_date = models.DateTimeField()
+    tracking_number = models.IntegerField()
+    recipient_information = models.CharField(max_length=255)
+
+class Employees(models.Model):
+    name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255, null=True, blank=True)
+    contact_info = models.CharField(max_length=255, null=True, blank=True)
