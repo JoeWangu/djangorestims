@@ -5,13 +5,13 @@ from inventory.models import Category, Supplier, ImagesUpload, Product, Inventor
 from inventory.serializers import CategorySerializer, SupplierSerializer, ImagesUploadSerializer, ProductSerializer, InventorySerializer, CustomerSerializer, OrderSerializer, TransactionSerializer, LocationSerializer, OnlineBuyerSerializer, ShipmentsSerializer, EmployeesSerializer
 
 class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all().order_by('name')
+    queryset = Category.objects.all().order_by('id')
     serializer_class = CategorySerializer
     # authentication_classes = [SessionAuthentication, TokenAuthentication]
     # permission_classes = [IsAuthenticated]
 
 class SupplierViewSet(viewsets.ModelViewSet):
-    queryset = Supplier.objects.all().order_by('name')
+    queryset = Supplier.objects.all().order_by('id')
     serializer_class = SupplierSerializer
 
 class ImagesUploadViewSet(viewsets.ModelViewSet):
@@ -19,15 +19,15 @@ class ImagesUploadViewSet(viewsets.ModelViewSet):
     serializer_class = ImagesUploadSerializer
 
 class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all().order_by('name')
+    queryset = Product.objects.all().order_by('id')
     serializer_class = ProductSerializer
 
 class InventoryViewSet(viewsets.ModelViewSet):
-    queryset = Inventory.objects.all().order_by('product')
+    queryset = Inventory.objects.all().order_by('id')
     serializer_class = InventorySerializer
 
 class CustomerViewSet(viewsets.ModelViewSet):
-    queryset = Customer.objects.all().order_by('name')
+    queryset = Customer.objects.all().order_by('id')
     serializer_class = CustomerSerializer
 
 class OrderViewSet(viewsets.ModelViewSet):
@@ -39,11 +39,11 @@ class TransactionViewSet(viewsets.ModelViewSet):
     serializer_class = TransactionSerializer
 
 class LocationViewSet(viewsets.ModelViewSet):
-    queryset = Location.objects.all().order_by('name')
+    queryset = Location.objects.all().order_by('id')
     serializer_class = LocationSerializer
 
 class OnlineBuyerViewSet(viewsets.ModelViewSet):
-    queryset = OnlineBuyer.objects.all().order_by('name')
+    queryset = OnlineBuyer.objects.all().order_by('id')
     serializer_class = OnlineBuyerSerializer
 
 class ShipmentsViewSet(viewsets.ModelViewSet):
@@ -51,5 +51,5 @@ class ShipmentsViewSet(viewsets.ModelViewSet):
     serializer_class = ShipmentsSerializer
 
 class EmployeesViewSet(viewsets.ModelViewSet):
-    queryset = Employees.objects.all().order_by('name')
+    queryset = Employees.objects.all().order_by('id')
     serializer_class = EmployeesSerializer
