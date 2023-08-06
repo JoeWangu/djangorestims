@@ -23,14 +23,14 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Product
-        fields = ['name', 'model_number', 'specifications', 'price', 'image', 'category', 'supplier']
+        fields = ['id', 'name', 'model_number', 'specifications', 'price', 'image', 'category', 'supplier']
 
 class InventorySerializer(serializers.HyperlinkedModelSerializer):
     product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
     
     class Meta:
         model = Inventory
-        fields = ['product', 'last_sales_date', 'quantity_sold', 'sales', 'stock_date', 'quantity_in_stock', 'minimum_quantity']
+        fields = ['id', 'product', 'last_sales_date', 'quantity_sold', 'sales', 'stock_date', 'quantity_in_stock', 'minimum_quantity']
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,14 +42,14 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['order_date', 'delivery_date', 'status', 'customer', 'product']
+        fields = ['id', 'order_date', 'delivery_date', 'status', 'customer', 'product']
 
 class TransactionSerializer(serializers.HyperlinkedModelSerializer):
     product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
     
     class Meta:
         model = Transaction
-        fields = ['transaction_type','transaction_date','product','quantity']
+        fields = ['id', 'transaction_type','transaction_date','product','quantity']
 
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
