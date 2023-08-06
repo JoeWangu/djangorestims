@@ -8,7 +8,6 @@ from inventory.models import Category, Supplier, ImagesUpload, Product, Inventor
 # class ImageAdmin(admin.ModelAdmin):
 #     inlines = [ProductAdmin]
 
-
 admin.site.register(Category)
 admin.site.register(Supplier)
 admin.site.register(ImagesUpload)
