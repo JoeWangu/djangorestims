@@ -84,7 +84,7 @@ class Product(models.Model):
         return self.name
 
 class Inventory(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.OneToOneField(Product, on_delete=models.CASCADE)
     last_sales_date = models.DateField(auto_now=True)
     quantity_sold = models.IntegerField(null=False,blank=False)
     sales = models.DecimalField(max_digits=19,decimal_places=2,null=False,blank=False)
