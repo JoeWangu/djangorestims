@@ -20,10 +20,11 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     supplier = serializers.PrimaryKeyRelatedField(queryset=Supplier.objects.all())
     image = serializers.PrimaryKeyRelatedField(queryset=ImagesUpload.objects.all())
+    image_detail = ImagesUploadSerializer(source='image', read_only=True)
     
     class Meta:
         model = Product
-        fields = ['id', 'name', 'model_number', 'specifications', 'price', 'image', 'category', 'supplier']
+        fields = ['id', 'name', 'model_number', 'specifications', 'price', 'image', 'image_detail', 'category', 'supplier']
 
 class InventorySerializer(serializers.HyperlinkedModelSerializer):
     product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
