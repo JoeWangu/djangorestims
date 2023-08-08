@@ -158,6 +158,6 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.IsAuthenticated',
         # 'rest_framework.permissions.IsAdminUser',
     ],
-    'PAGE_SIZE': 10,
+    'PAGE_SIZE': 5,
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
 }
