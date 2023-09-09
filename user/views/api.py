@@ -10,8 +10,8 @@ from rest_framework import views
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-# from django.views.decorators.csrf import csrf_exempt
-# from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 
 class CreateUserApi(generics.CreateAPIView):
@@ -31,7 +31,7 @@ class CreateUserApi(generics.CreateAPIView):
 #  TOKEN BASED VIEWS
 # @api_view(['POST'])
 # @csrf_exempt
-# @method_decorator(csrf_exempt, name='dispatch')
+@method_decorator(csrf_exempt, name='dispatch')
 class LoginApi(views.APIView):
     # This view should be accessible also for unauthenticated users.
     permission_classes = (permissions.AllowAny,)
