@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5gky#43sk$4u+@e8%@wv7aep=*k(*d%ok3)=mu4mi_szz$bd_5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['royaldweeb.pythonanywhere.com','127.0.0.1']
 
@@ -143,19 +143,19 @@ STATICFILES_DIRS = [
 AUTH_USER_MODEL = 'user.User'
 
 # users will be redirected to the home page after login
-LOGIN_REDIRECT_URL = "user_home"
-LOGOUT_REDIRECT_URL = "logoutView"
+LOGIN_REDIRECT_URL = "user-home"
+LOGOUT_REDIRECT_URL = "logout-view"
 
 # settings.py
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticated',
         # 'rest_framework.permissions.IsAdminUser',
     ],
     'PAGE_SIZE': 5,

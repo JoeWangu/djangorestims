@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="1; url={% url 'user_home' %}">
+    <meta http-equiv="refresh" content="1; url={% url 'user-home' %}">
     <title>{{ title }}</title>
     <style>
         .flex{
@@ -19,9 +19,9 @@
 <body>
     <h1>You have been logged out, Goodbye 👋</h1>
     <div class="flex">
-    <div><a href="{% url 'MyLoginView' %}">login</a></div>
+    <div><a href="{% url 'login-view' %}">login</a></div>
     <div><a href="{% url 'signup' %}">signup</a></div>
-    <div><a href="{% url 'user_home' %}">Home</a></div>
+    <div><a href="{% url 'user-home' %}">Home</a></div>
 </div>
 </body>
 

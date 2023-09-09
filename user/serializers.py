@@ -17,32 +17,6 @@ class UserSerializer(serializers.ModelSerializer):
         )
         return user
 
-# 2 passwords
-# from myapp.models import MyUser
-# from rest_framework import serializers
-
-# class UserSerializer(serializers.ModelSerializer):
-#     password1 = serializers.CharField(write_only=True)
-#     password2 = serializers.CharField(write_only=True)
-
-#     class Meta:
-#         model = MyUser
-#         fields = ('username', 'email', 'password1', 'password2')
-
-#     def validate(self, data):
-#         if data['password1'] != data['password2']:
-#             raise serializers.ValidationError("Passwords do not match")
-#         return data
-
-#     def create(self, validated_data):
-#         validated_data.pop('password2')
-#         user = MyUser.objects.create_user(
-#             username=validated_data['username'],
-#             email=validated_data['email'],
-#             password=validated_data['password1']
-#         )
-#         return user
-
 class LoginSerializer(serializers.Serializer):
     """
     This serializer defines two fields for authentication:
@@ -82,4 +56,29 @@ class LoginSerializer(serializers.Serializer):
         # It will be used in the view.
         attrs['user'] = user
         return attrs
-    
+
+# 2 passwords
+# from myapp.models import MyUser
+# from rest_framework import serializers
+
+# class UserSerializer(serializers.ModelSerializer):
+#     password1 = serializers.CharField(write_only=True)
+#     password2 = serializers.CharField(write_only=True)
+
+#     class Meta:
+#         model = MyUser
+#         fields = ('username', 'email', 'password1', 'password2')
+
+#     def validate(self, data):
+#         if data['password1'] != data['password2']:
+#             raise serializers.ValidationError("Passwords do not match")
+#         return data
+
+#     def create(self, validated_data):
+#         validated_data.pop('password2')
+#         user = MyUser.objects.create_user(
+#             username=validated_data['username'],
+#             email=validated_data['email'],
+#             password=validated_data['password1']
+#         )
+#         return user

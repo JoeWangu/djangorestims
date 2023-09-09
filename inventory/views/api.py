@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-# from rest_framework.authentication import SessionAuthentication, TokenAuthentication
-# from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from inventory.models import Category, Supplier, ImagesUpload, Product, Inventory, Customer, Order, Transaction, Location, OnlineBuyer, Shipments, Employees
 from inventory.serializers import CategorySerializer, SupplierSerializer, ImagesUploadSerializer, ProductSerializer, InventorySerializer, CustomerSerializer, OrderSerializer, TransactionSerializer, LocationSerializer, OnlineBuyerSerializer, ShipmentsSerializer, EmployeesSerializer
 
@@ -21,6 +21,8 @@ class ImagesUploadViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all().order_by('id')
     serializer_class = ProductSerializer
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
 class InventoryViewSet(viewsets.ModelViewSet):
     queryset = Inventory.objects.all().order_by('id')
