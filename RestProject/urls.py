@@ -26,8 +26,11 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('inventory/', include('inventory.urls')),
     # path('profile/', include('userprofile.urls')),
-    # added to serve static files when debug=false,comment when committing to github
-    re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
-    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+    # added to serve static files when debug=false,comment when committing to GitHub
+    re_path(r'^media/(?P<path>.*)$', serve,
+            {'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve,
+            {'document_root': settings.STATIC_ROOT}),
 ]
-# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL,
+# document_root=settings.STATIC_ROOT)

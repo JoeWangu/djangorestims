@@ -1,42 +1,52 @@
 from rest_framework import serializers
-from inventory.models import Category, Supplier, ImagesUpload, Product, Inventory, Customer, Order, Transaction, Location, OnlineBuyer, Shipments, Employees
+from inventory.models import Category, Supplier, ImagesUpload, Product, Inventory, Customer, Order, Transaction, \
+    Location, OnlineBuyer, Shipments, Employees
+
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
 
+
 class SupplierSerializer(serializers.ModelSerializer):
     class Meta:
         model = Supplier
         fields = '__all__'
+
 
 class ImagesUploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = ImagesUpload
         fields = '__all__'
 
+
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     supplier = serializers.PrimaryKeyRelatedField(queryset=Supplier.objects.all())
     image = serializers.PrimaryKeyRelatedField(queryset=ImagesUpload.objects.all())
     image_detail = ImagesUploadSerializer(source='image', read_only=True)
-    
+
     class Meta:
         model = Product
-        fields = ['id', 'name', 'model_number', 'specifications', 'price', 'image', 'image_detail', 'category', 'supplier']
+        fields = ['id', 'name', 'model_number', 'specifications', 'price', 'image', 'image_detail', 'category',
+                  'supplier']
+
 
 class InventorySerializer(serializers.HyperlinkedModelSerializer):
     product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
-    
+
     class Meta:
         model = Inventory
-        fields = ['id', 'product', 'last_sales_date', 'quantity_sold', 'sales', 'stock_date', 'quantity_in_stock', 'minimum_quantity']
+        fields = ['id', 'product', 'last_sales_date', 'quantity_sold', 'sales', 'stock_date', 'quantity_in_stock',
+                  'minimum_quantity']
+
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = '__all__'
+
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
@@ -45,27 +55,32 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
         model = Order
         fields = ['id', 'order_date', 'delivery_date', 'status', 'customer', 'product']
 
+
 class TransactionSerializer(serializers.HyperlinkedModelSerializer):
     product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
-    
+
     class Meta:
         model = Transaction
-        fields = ['id', 'transaction_type','transaction_date','product','quantity']
+        fields = ['id', 'transaction_type', 'transaction_date', 'product', 'quantity']
+
 
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
         fields = '__all__'
 
+
 class OnlineBuyerSerializer(serializers.ModelSerializer):
     class Meta:
         model = OnlineBuyer
         fields = '__all__'
 
+
 class ShipmentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Shipments
         fields = '__all__'
+
 
 class EmployeesSerializer(serializers.ModelSerializer):
     class Meta:

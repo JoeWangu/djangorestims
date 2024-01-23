@@ -10,6 +10,8 @@ from rest_framework import views
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
+
+
 # from django.views.decorators.csrf import csrf_exempt
 # from django.utils.decorators import method_decorator
 
@@ -28,6 +30,7 @@ class CreateUserApi(generics.CreateAPIView):
             return Response(data, status=status.HTTP_201_CREATED)
         return response
 
+
 #  TOKEN BASED VIEWS
 # @api_view(['POST'])
 # @csrf_exempt
@@ -37,14 +40,16 @@ class LoginApi(views.APIView):
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format=None):
-        serializer = LoginSerializer(data=self.request.data, context={ 'request': self.request }) # type: ignore
+        serializer = LoginSerializer(data=self.request.data, context={'request': self.request})  # type: ignore
         serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user'] # type: ignore
+        user = serializer.validated_data['user']  # type: ignore
         # token = Token.objects.get_or_create(user = user)
         token, created = Token.objects.get_or_create(user=user)
-        data = {'user': request.data['username'], 'token': token.key, 'created': created}
+        data = {'user': request.data['username'],
+                'token': token.key, 'created': created}
         # login(request, user)
         return Response(data, status=status.HTTP_202_ACCEPTED)
+
 
 # @api_view(['POST'])
 @authentication_classes([TokenAuthentication])

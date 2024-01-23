@@ -1,5 +1,6 @@
 from django.contrib import admin
-from inventory.models import Category, Supplier, ImagesUpload, Product, Inventory, Customer, Order, Transaction, Location, OnlineBuyer, Shipments, Employees
+from inventory.models import *
+
 
 # Register your models here.
 # class ProductAdmin(admin.StackedInline):

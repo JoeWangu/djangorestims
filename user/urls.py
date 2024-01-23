@@ -2,7 +2,7 @@ from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
 from user.views.templates import user_home, signup, logoutView, MyLoginView
 from user.views.api import CreateUserApi, LoginApi, LogoutApi
-                            #,LoginUserView
+# ,LoginUserView
 
 urlpatterns = [
     path('', user_home, name='user-home'),
