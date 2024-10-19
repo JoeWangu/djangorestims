@@ -1,8 +1,8 @@
-.venv/
-.vscode/
-static/
-db.sqlite3
-media/
+/.venv/
+/.vscode/
+/static/
+/db.sqlite3
+/media/
 inventory/__pycache__/
 inventory/migrations/
 inventory/views/__pycache__/
